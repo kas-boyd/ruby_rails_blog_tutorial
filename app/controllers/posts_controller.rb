@@ -11,13 +11,17 @@ class PostsController < ApplicationController
         @post = Post.new(post_params)
 
         if @post.save
-            redirect_to @post
+            redirect_to @post 
         else
             render "new"
         end
     end
 
-    private
+    def show
+        @post = Post.find(params[:id])
+    end 
+
+    private # what is this?? why is it here and not somewhere else in the file? 
 
     def post_params
         params.require(:post).permit(:title, :content)
